@@ -1,0 +1,129 @@
+---
+import Logo from "../assets/icons/Logo.svg";
+import Logow from "../assets/icons/Logow.svg";
+import LogoIG from "../assets/icons/IG.svg";
+import LogoFB from "../assets/icons/Facebook.svg";
+import LogoTikTok from "../assets/icons/Tiktok.svg";
+import LogoX from "../assets/icons/X.svg";
+import LogoYT from "../assets/icons/youtube.svg";
+---
+
+<header
+  class="group px-6 lg:px-10 py-8 relative z-10 w-full flex items-stretch justify-between transition-all duration-300 ease-in-out lg:py-0 lg:bg-white"
+  id="header"
+  aria-expanded="false"
+>
+  <div class="flex items-center relative z-20">
+    <a href="/" aria-label="Accueil">
+      <Logo className="block group-aria-expanded:hidden" />
+      <Logow className="hidden group-aria-expanded:block" />
+    </a>
+  </div>
+
+  <div class="flex items-center gap-4 lg:flex-row-reverse">
+    <button
+      class="group relative z-20 flex h-6 w-8 flex-col justify-between *:h-[4px] *:rounded-lg *:w-full *:bg-black *:transition-all *:duration-300 *:ease lg:hidden"
+      id="menu-btn"
+      aria-label="Menu"
+      aria-controls="menu"
+      aria-expanded="false"
+    >
+      <span
+        class="group-aria-expanded:translate-y-[10.5px] group-aria-expanded:rotate-45 group-aria-expanded:bg-[var(--color-beige)]"
+      ></span>
+      <span
+        class="group-aria-expanded:opacity-0 group-aria-expanded:bg-[var(--color-beige)]"
+      ></span>
+      <span
+        class="group-aria-expanded:-translate-y-[10.5px] group-aria-expanded:-rotate-45 group-aria-expanded:bg-[var(--color-beige)]"
+      ></span>
+    </button>
+
+    <nav
+      class="visible fixed z-10 inset-0 bg-(--color-violet-obscure) text-white transition-all duration-300 ease-in-out max-lg:aria-hidden:invisible max-lg:aria-hidden:opacity-0 lg:relative lg:flex lg:items-center lg:bg-transparent lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-black lg:opacity-100"
+      id="menu"
+      aria-hidden="true"
+    >
+      <ul class="mt-[25vh] mx-16 lg:m-0 lg:flex *:relative *:overflow-hidden">
+        <li>
+          <a class="block px-5 py-4 lg:py-8" href="/festival">Le festival</a>
+        </li>
+        <li>
+          <a class="block px-5 py-4 lg:py-8" href="/enseignements"
+            >Programme 2025</a
+          >
+        </li>
+        <li>
+          <a class="block px-5 py-4 lg:py-8" href="/invites">Invités</a>
+        </li>
+        <li>
+          <a class="block px-5 py-4 lg:py-8" href="/reservation">Reservation</a>
+        </li>
+        <li>
+          <a class="block px-5 py-4 lg:py-8" href="/participer">Participer</a>
+        </li>
+        <li>
+          <a class="block px-5 py-4 lg:py-8" href="/contact">Contact</a>
+        </li>
+      </ul>
+    <hr />
+      <div class="flex justify-between gap-2 py-8 lg:hidden *:size-6 px-15">
+        <LogoIG />
+        <LogoX />
+        <LogoYT />
+        <LogoTikTok />
+        <LogoFB />
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Script fonction menu -->
+
+<script>
+  const toggle = document.querySelector("#menu-btn");
+  const nav = document.querySelector("#menu");
+  const page = document.body;
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.ariaExpanded === "true";
+      const isClosed = !isOpen;
+      toggle.ariaExpanded = String(isClosed);
+      nav.ariaHidden = String(isOpen);
+      header.setAttribute("aria-expanded", String(isClosed));
+      page.classList.toggle("noscroll", isClosed);
+    });
+  }
+
+  const navBar = document.querySelector("#header");
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+  const offset = 205;
+
+  function handleScroll() {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > offset) {
+      navBar.classList.add("bg-white");
+    } else {
+      navBar.classList.remove("bg-white");
+    }
+
+    if (currentScrollY > lastScrollY && currentScrollY > offset) {
+      navBar.classList.add("-translate-y-full");
+    } else if (currentScrollY < lastScrollY || currentScrollY <= offset) {
+      navBar.classList.remove("-translate-y-full");
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(handleScroll);
+      ticking = true;
+    }
+  });
+</script>

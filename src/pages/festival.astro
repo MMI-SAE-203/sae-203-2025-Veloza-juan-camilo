@@ -1,0 +1,115 @@
+---
+import Layout from "../layouts/Layout.astro";
+import imgcontent1 from "../assets/img/cineindependiente1.webp";
+import imgcontent2 from "../assets/img/cineexperimental1.webp";
+import imagecontent3 from "../assets/img/doubsornans1.webp";
+
+
+import Star from "../assets/icons/Star.svg";
+
+import { Picture } from "astro:assets";
+
+const title = "Le Festival";
+const description =
+  "Le festival Flash Cinéma 25 est un événement cinématographique qui se déroule dans la ville d'Ornans, située dans le département du Doubs. Ce festival se distingue de ces concurrents par son concept dynamique, en mettant à l'honneur les films courts et des courts métrages capturent la rapidité, l'énergie et l'innovation du septième art (Cinéma).";
+---
+
+<Layout title={title} description={description}>
+  <article class="px-5">
+    <h1>{title}</h1>
+    <Star />
+    <p>
+      Le festival Flash Cinéma 25 est un événement cinématographique qui se
+      déroule dans la ville d'Ornans, située dans le département du Doubs. Ce
+      festival se distingue de ces concurrents par son concept dynamique, en
+      mettant à l'honneur les films courts et des courts métrages capturent la
+      rapidité, l'énergie et l'innovation du septième art (Cinéma).
+    </p>
+    <figure class="-mx-5 w-screen">
+      <Picture
+        class="block w-full object-fill"
+        src={imgcontent1}
+        alt="Representation of a cinema festival"
+      />
+    </figure>
+
+    <h3 class="pt-15 pb-10">NAISSANCE DU FESTIVAL</h3>
+    <div class="*:py-5">
+      <p>
+        Le Festival Flash Cinéma 25 à Ornans, dans le Doubs, est né d’une idée
+        simple : rendre le cinéma accessible à tous, dans un cadre unique et
+        convivial. L’histoire commence il y a quelques années, quand un groupe
+        d’amis passionnés par le septième art décide de créer un événement
+        original, où la créativité et la diversité seraient à l’honneur. Leur
+        ambition : offrir un espace où réalisateurs émergents et amateurs
+        pourraient partager leurs œuvres sous les étoiles.
+      </p>
+      <p>
+        Pourquoi "Flash" ? Parce que le festival se distingue par la rapidité et
+        la spontanéité des créations présentées. Les courts-métrages
+        sélectionnés reflètent des visions singulières, des histoires racontées
+        en quelques minutes mais avec une intensité qui marque les esprits. Le
+        format court permet une plus grande accessibilité pour les réalisateurs,
+        tout en captant l’attention d’un public diversifié.
+      </p>
+      <p>
+        Installé dans les magnifiques paysages d’Ornans, ce festival en plein
+        air est un véritable appel à la découverte et à l’échange. Chacun, qu’il
+        soit cinéphile averti ou simple curieux, est accueilli avec chaleur et
+        enthousiasme. Ici, pas de barrière : les projections sont gratuites,
+        ouvertes à tous, et visent à créer un espace inclusif où la rencontre
+        entre les artistes et le public est favorisée
+      </p>
+      <p>
+        Le Festival Flash Cinéma 25 est rapidement devenu un rendez-vous
+        incontournable pour les amateurs de cinéma et les créateurs de tous
+        horizons. Dans un esprit festif et participatif, il célèbre la liberté
+        d’expression, l’audace et l’imagination. Chaque année, les rues d’Ornans
+        vibrent au rythme de ce festival unique, où l’art cinématographique
+        prend vie en plein air, sous les yeux émerveillés de spectateurs venus
+        partager un moment d’exception
+      </p>
+    </div>
+
+    <figure class="-mx-5 w-screen py-10">
+      <Picture
+        class="block w-full object-fill"
+        src={imgcontent2}
+        alt="Representation of a cinema festival"
+      />
+    </figure>
+
+    <div class="bg-[var(--color-vert)] w-screen -mx-5 p-4">
+      <h1 class="text-[var(--color-violet-obscure)]">Un Festival en plein air</h1>
+      <figure class="flex justify-center">
+        <Picture
+          class="block w-full object-fill"
+          src={imagecontent3}
+          alt="Representation of a cinema festival"
+        />
+      </figure>
+
+      <h3>ORANS-DOUBS</h3>
+
+    <div class="text-sm font-sans">
+      <p>Notre festival de cinéma à Orans-Doubs a choisi de s'installer en plein air pour vous offrir une expérience cinématographique unique et inoubliable, en parfaite harmonie avec notre magnifique région.</p>
+
+      <p>Le cinéma en plein air est une occasion de partager des moments conviviaux entre amis ou en famille. Les spectateurs sont invités à apporter leurs couvertures, leurs coussins et leurs pique-niques pour se créer un espace cosy et personnalisé.</p>
+    </div>
+
+</div>
+<div class="pt-6">
+    <div>
+    <h1 class="py-10">VALEURS DU FESTIVAL</h1>
+        <div>
+            <ul class="*:py-2">
+                <li><span class="font-bold">Accesibilité:</span>Des projections gratuites et ouvertes à tous, sans barrières, pour démocratiser le cinéma.</li>
+                <li><span class="font-bold">Crétivité:</span>Un espace qui valorise l’innovation et l’originalité dans les œuvres cinématographiques.</li>
+                <li><span class="font-bold">Diversité:</span>Une plateforme où des visions et des talents variés se rencontrent et s’expriment.</li>
+                <li><span class="font-bold">Partage:</span>Favoriser les échanges entre réalisateurs et spectateurs dans une ambiance conviviale et chaleureuse.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</article>
+</Layout>

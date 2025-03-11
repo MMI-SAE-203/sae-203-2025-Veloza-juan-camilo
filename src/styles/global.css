@@ -1,1 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Vina+Sans&display=swap');
 @import "tailwindcss";
+
+@theme{
+    --color-violet-obscure: #2C2A4A;
+    --color-violet-fonce: #4F518C;
+    --color-violet: #2C2A4A;
+    --color-beige: #F4EBD9;
+    --color-vert: #62BBC1;
+
+    --font-header: 'Vina Sans', "sans-serif";
+    --font-text: "Helvetica", "sans-serif";
+
+    --my-grid: repeat(13, minmax(0,64px));
+}
+
+@layer base{
+    body{
+        @apply font-text text-base leading-6;
+    }
+    h1{
+        @apply text-4xl font-header leading-normal;
+    }
+    h2{
+        @apply text-2xl font-header leading-normal;
+    }
+    h3{
+        @apply text-xl font-text font-bold leading-normal;
+    }
+}
+
+@layer components{
+    .grille{
+        @apply px-6 lg:grid-cols-(--my-grid) lg:justify-center lg:gap-20;
+    }
+    .nonscroll{
+        overflow: hidden;
+    }
+}

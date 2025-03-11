@@ -85,3 +85,10 @@ export async function AllAnimateursName(name){
 export async function addNewFilm (NewFilm){
     await pb.collection('Films').create(NewFilm);
 }
+
+//9.5 Une fonction qui permet d’ajouter ou modifier les informations d’un film, activité ou invité
+
+export async function updateFilmsbyId (id, data){
+    await pb.collection('Films').update(id, data);
+}
+

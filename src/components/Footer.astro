@@ -1,0 +1,54 @@
+---
+import Logow from "../assets/icons/Logow.svg";
+import LogoIG from "../assets/icons/IG.svg";
+import LogoFB from "../assets/icons/Facebook.svg";
+import LogoTikTok from "../assets/icons/Tiktok.svg";
+import LogoX from "../assets/icons/X.svg";
+import LogoYT from "../assets/icons/youtube.svg";
+---
+<footer class="lg:grid items-center lg:grid-cols-13 gap-1 justify-center grille bg-[var(--color-violet-obscure)] text-xs p-6 lg:px-15 text-white lg:space-y-0">
+  <a class="block" href="/" aria-label="Accueil">
+    <Logow />
+  </a>
+
+  <nav class="p-5 lg:p-0 space-y-3 lg:col-span-5 lg:col-start-1">
+    <ul class="*:py-3 first:pt-8 *:uppercase *:font-bold *:lg:text-xs">
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/mentionslegales">Mentions légales</a></li>
+      <li><a href="/politiques">Politiques de confidentialité</a></li>
+    </ul>
+  </nav>
+
+  <span class="lg:hidden bg-white w-2"></span>
+
+<div class="relative bg-[var(--color-beige)] text-black px-6 py-2 pl-10 right-10 lg:col-span-10 lg:col-start-6 lg:ml-10 lg:-mr-10 lg:py-8">
+    <div class="">
+        <h1 class="">News letter</h1>
+        <p class="text-[10px] -tracking-tighter py-2"> Inscivez-vous et retrouvez les actualités du festival pour ne rien rater !</p>
+        <div class="py-4">
+            <form class="bg-white rounded-2xl p-4" action="" method="post">
+                <label>
+                    <input
+                    type="text"
+                    name="newsleter"
+                    id="newsletter"
+                    placeholder="S'incrire à la Newsletter"
+                    />
+                </label>
+                    <input type="submit" value="S'inscrire" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="lg:flex lg:flex-col lg:col-span-3">
+<h2 class="py-3 font-normal *size-10 >Nous suivre">Nous Suivre</h2>
+    <div class="flex gap-6 py-2">
+            <LogoIG />
+            <LogoFB />
+            <LogoYT />
+    </div>
+</div>
+    </div>
+</div>
+</footer>

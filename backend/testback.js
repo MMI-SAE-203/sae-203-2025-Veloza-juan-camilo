@@ -1,5 +1,5 @@
 import {AllFilmsProjection, AllActivitiesProjection, AllActorsFestival, OnlyRealisateursFestival, FilmById, ActivityById, 
-ActorById, JuryActivitiesById, AllAnimateursName, addNewFilm } from './backend.mjs';
+ActorById, JuryActivitiesById, AllAnimateursName, addNewFilm, updateFilmsbyId } from './backend.mjs';
 
 //1. Fonction qui retourne la liste de tous les films triés par date de projection
 
@@ -110,15 +110,30 @@ ActorById, JuryActivitiesById, AllAnimateursName, addNewFilm } from './backend.m
 
 //9. Une fonction qui permet d’ajouter ou modifier les informations d’un film, activité ou invité
 
-const nouveauFilm = {
-    "titre_film" : "Kimi no nawa",
-    "description_film" : "Mitsuha, adolescente coincée dans une famille traditionnelle, est loin d'imaginer pouvoir vivre l'aventure urbaine dont elle rêve dans la peau de Taki, un jeune lycéen vivant à Tokyo. À travers ses rêves, Mitsuha se voit vivre dans la vie du jeune garçon au point qu'elle croit vivre la réalité...",
-    "date_film" : "2025-08-8",
-    "synopsis_film" : "Mitsuha, adolescente coincée dans une famille traditionnelle, rêve de quitter ses montagnes natales pour découvrir la vie trépidante de Tokyo. Elle est loin d'imaginer pouvoir vivre l'aventure urbaine dans la peau de... Taki, un jeune lycéen vivant à Tokyo. À travers ses rêves, Mitsuha se voit littéralement propulsée dans la vie du jeune garçon. Quel mystère se cache derrière ces rêves étranges qui unissent deux destinées que tout oppose et qui ne se sont jamais rencontrées ?",
-    "bd_film" : "https://www.youtube.com/watch?v=AROOK45LXXg",
-    "duree_film" : 120,
-    "genre_film" : "animation",
-    "langue_film" : "français"
-};
+// const nouveauFilm = {
+//     "titre_film" : "Kimi no nawa",
+//     "description_film" : "Mitsuha, adolescente coincée dans une famille traditionnelle, est loin d'imaginer pouvoir vivre l'aventure urbaine dont elle rêve dans la peau de Taki, un jeune lycéen vivant à Tokyo. À travers ses rêves, Mitsuha se voit vivre dans la vie du jeune garçon au point qu'elle croit vivre la réalité...",
+//     "date_film" : "2025-08-8",
+//     "synopsis_film" : "Mitsuha, adolescente coincée dans une famille traditionnelle, rêve de quitter ses montagnes natales pour découvrir la vie trépidante de Tokyo. Elle est loin d'imaginer pouvoir vivre l'aventure urbaine dans la peau de... Taki, un jeune lycéen vivant à Tokyo. À travers ses rêves, Mitsuha se voit littéralement propulsée dans la vie du jeune garçon. Quel mystère se cache derrière ces rêves étranges qui unissent deux destinées que tout oppose et qui ne se sont jamais rencontrées ?",
+//     "bd_film" : "https://www.youtube.com/watch?v=AROOK45LXXg",
+//     "duree_film" : 120,
+//     "genre_film" : "animation",
+//     "langue_film" : "français"
+// };
 
-await addNewFilm(nouveauFilm);
+// await addNewFilm(nouveauFilm);
+
+//9.5 Une fonction qui permet d’ajouter ou modifier les informations d’un film, activité ou invité
+
+// const uptadeFilm = {
+//     "titre_film" : "Robocop",
+//     "description_film" : "Pour enrayer la criminalité à Detroit, deux projets sont en concurrence : Dick Jones a créé une machine guerrière très sophistiquée, tandis que Leon Nash, un arriviste, a conçu Robocop, une créature mi-homme mi-robot. C'est ce deuxième qui l'emporte, et Alex Murphy, un jeune policier assassiné par des bandits, est utilisé pour devenir Robocop. Il nettoie la ville et tue Jones qui avait fait abattre Leon",
+//     "date_film" : "1988-01-20",
+//     "synopsis_film" : "Pour enrayer la criminalité à Detroit, deux projets sont en concurrence : Dick Jones a créé une machine guerrière très sophistiquée, tandis que Leon Nash, un arriviste, a conçu Robocop, une créature mi-homme mi-robot. C'est ce deuxième qui l'emporte, et Alex Murphy, un jeune policier assassiné par des bandits, est utilisé pour devenir Robocop. Il nettoie la ville et tue Jones qui avait fait abattre Leon",
+//     "bd_film" : "https://www.youtube.com/watch?v=IqvRDhW-XVA",
+//     "duree_film" : 120,
+//     "genre_film" : "action",
+//     "langue_film" : "français"
+// }
+
+// await updateFilmsbyId('biqverk6f4i4svq', uptadeFilm);
