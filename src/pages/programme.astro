@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Cardfilms from "../components/Cardfilms.astro";
+
+
+import { AllFilmsProjection } from "../js/backend.js";
+let events = await AllFilmsProjection();
+---
+
+<Layout>
+  <div>
+    <h1 class="text-4xl">PROGRAMME<br />2025</h1>
+    {events.map((event) => <Cardfilms {...event} />)}
+  </div>
+</Layout>

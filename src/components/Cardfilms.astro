@@ -1,0 +1,38 @@
+---
+import { formatDate } from "../js/helpers.js";
+const { ...event } = Astro.props;
+
+// const { id } = Astro.props;
+---
+
+<div class="p-6">
+  <div class="border-1 border-black p-5">
+    <h1>{event.titre_film}</h1>
+
+ <div class="w-fit">
+    <span class="inline-block bg-[var(--color-violet-obscure)] rounded-3xl px-10 py-1">
+        <p class="text-white text-sm font-light">{event.genre_film}</p>
+    </span>
+</div>
+
+    <p class="">{event.description_film}</p>
+    <img src={event.img} alt={event.img_film} class="w-64 h-64 object-cover" />
+    <div>
+      <h3>UN FILM DE {event.invite}</h3>
+      <p>{event.description_film}</p>
+      <p>{event.lieu_film}</p>
+    </div>
+    <div>
+      <!-- <h2>{formatDate(event.date_film)}</h2> -->
+      <h2>{event.date_film}</h2>
+    </div>
+  </div>
+</div>
+
+<!-- {events.length > 0 ? (
+    events.map(event =>
+        <h1 class="">{event.titre_film}</h1>
+    )
+) : (
+    <p class="">Aucun film n'est projeté pour le moment.</p>
+)} -->

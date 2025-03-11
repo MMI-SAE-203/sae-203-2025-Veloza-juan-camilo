@@ -3,7 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import imgcontent1 from "../assets/img/cineindependiente1.webp";
 import imgcontent2 from "../assets/img/cineexperimental1.webp";
 import imagecontent3 from "../assets/img/doubsornans1.webp";
+import Ticketimage from "../assets/img/ticket.webp";
 
+import Button from "../components/Button.astro";
 
 import Star from "../assets/icons/Star.svg";
 
@@ -80,7 +82,9 @@ const description =
     </figure>
 
     <div class="bg-[var(--color-vert)] w-screen -mx-5 p-4">
-      <h1 class="text-[var(--color-violet-obscure)]">Un Festival en plein air</h1>
+      <h1 class="text-[var(--color-violet-obscure)]">
+        Un Festival en plein air
+      </h1>
       <figure class="flex justify-center">
         <Picture
           class="block w-full object-fill"
@@ -91,25 +95,136 @@ const description =
 
       <h3>ORANS-DOUBS</h3>
 
-    <div class="text-sm font-sans">
-      <p>Notre festival de cinéma à Orans-Doubs a choisi de s'installer en plein air pour vous offrir une expérience cinématographique unique et inoubliable, en parfaite harmonie avec notre magnifique région.</p>
+      <div class="text-sm font-sans">
+        <p>
+          Notre festival de cinéma à Orans-Doubs a choisi de s'installer en
+          plein air pour vous offrir une expérience cinématographique unique et
+          inoubliable, en parfaite harmonie avec notre magnifique région.
+        </p>
 
-      <p>Le cinéma en plein air est une occasion de partager des moments conviviaux entre amis ou en famille. Les spectateurs sont invités à apporter leurs couvertures, leurs coussins et leurs pique-niques pour se créer un espace cosy et personnalisé.</p>
+        <p>
+          Le cinéma en plein air est une occasion de partager des moments
+          conviviaux entre amis ou en famille. Les spectateurs sont invités à
+          apporter leurs couvertures, leurs coussins et leurs pique-niques pour
+          se créer un espace cosy et personnalisé.
+        </p>
+      </div>
+      <Button href="#" variant="violet">En savoir plus sur la ville</Button>
     </div>
 
-</div>
-<div class="pt-6">
-    <div>
-    <h1 class="py-10">VALEURS DU FESTIVAL</h1>
+    <div class="pt-6">
+      <div>
+        <h1 class="py-10">VALEURS DU FESTIVAL</h1>
         <div>
-            <ul class="*:py-2">
-                <li><span class="font-bold">Accesibilité:</span>Des projections gratuites et ouvertes à tous, sans barrières, pour démocratiser le cinéma.</li>
-                <li><span class="font-bold">Crétivité:</span>Un espace qui valorise l’innovation et l’originalité dans les œuvres cinématographiques.</li>
-                <li><span class="font-bold">Diversité:</span>Une plateforme où des visions et des talents variés se rencontrent et s’expriment.</li>
-                <li><span class="font-bold">Partage:</span>Favoriser les échanges entre réalisateurs et spectateurs dans une ambiance conviviale et chaleureuse.</li>
-            </ul>
+          <ul class="*:py-2">
+            <li>
+              <span class="font-bold">Accesibilité:</span>Des projections
+              gratuites et ouvertes à tous, sans barrières, pour démocratiser le
+              cinéma.
+            </li>
+            <li>
+              <span class="font-bold">Crétivité:</span>Un espace qui valorise
+              l’innovation et l’originalité dans les œuvres cinématographiques.
+            </li>
+            <li>
+              <span class="font-bold">Diversité:</span>Une plateforme où des
+              visions et des talents variés se rencontrent et s’expriment.
+            </li>
+            <li>
+              <span class="font-bold">Partage:</span>Favoriser les échanges
+              entre réalisateurs et spectateurs dans une ambiance conviviale et
+              chaleureuse.
+            </li>
+          </ul>
         </div>
+      </div>
+
+      <div>
+        <h1 class="pt-10 pb-5">THÉMATIQUE</h1>
+        <div class="*:py-3">
+          <p>
+            L'édition met en lumière l'audace et l'imagination à travers des
+            courts-métrages rapides et spontanés. Chaque film reflète des
+            histoires intenses et marquantes, célébrant la capacité du cinéma à
+            capturer l'essence de la vie en un instant.
+          </p>
+          <p>
+            Dans le cadre pittoresque d'Ornans, cette édition invite à célébrer
+            la liberté d'expression et l'art de raconter des histoires, tout en
+            rapprochant les amateurs de cinéma et les créateurs du monde entier.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h1 class="pt-10 pb-5">ORGANISATEURS</h1>
+        <div>
+          <ul class="*:py-2">
+            <li>
+              <span class="font-bold">María Lopes</span> - Directrice du festival
+              (Gestion générale et partenariats)
+            </li>
+            <li>
+              <span class="font-bold">Jean-Baptiste Durand</span> - Responsable de
+              la programmation (Sélection des films et relations avec les réalisateurs)
+            </li>
+            <li>
+              <span class="font-bold">Camilo Veloza</span> - Chargée de communication
+              (Réseaux sociaux, presse et promotion)
+            </li>
+            <li>
+              <span class="font-bold">Olivier Petit</span> - Coordinateur logistique
+              (Lieux de projection, billetterie, hébergement des invités)
+            </li>
+            <li>
+              <span class="font-bold">Anna Kowaiski</span> - Responsable des événements
+              (Masterclasses, conférences et soirées spéciale
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h1 class="pt-10 pb-5">ÉQUIPE TECHNIQUE</h1>
+        <div class="pb-15">
+          <ul class="*:py-2">
+            <li>
+              <span class="font-bold">Théo Lambert</span> - Régisseur général (Supervision
+              technique de l'événement)
+            </li>
+            <li>
+              <span class="font-bold">Lucie Morel</span> - Ingénieure du son (Installation
+              et contrôle des systèmes audio
+            </li>
+            <li>
+              <span class="font-bold">François Dupont</span> - Projectionniste (Gestion
+              des copies numériques et projections en salle)
+            </li>
+            <li>
+              <span class="font-bold">Camille Renaud</span> - Éclairagiste (Mise
+              en lumière des espaces et scènes du festival)
+            </li>
+            <li>
+              <span class="font-bold">Bastien Leroy</span> - Technicien audiovisuel
+              (Diffusion des films et gestion des pannes techniques)
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex items-center bg-[var(--color-violet)] w-screen -mx-5">
+        <div class="px-5">
+          <h1 class="text-white">RESERVEZ VOS BILLETS ICI</h1>
+          <Button href="#" variant="beige">RECERVEZ ICI</Button>
+        </div>
+        <figure class="-my-7">
+          <Picture
+            class=""
+            src={Ticketimage}
+            alt="Representation of a cinema festival"
+          />
+        </figure>
+      </div>
     </div>
-</div>
-</article>
+  </article>
 </Layout>
