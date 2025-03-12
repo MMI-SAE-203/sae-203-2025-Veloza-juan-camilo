@@ -3,11 +3,15 @@ const POCKETBASE_URL = 'http://127.0.0.1:8090';
 
 const pb =new PocketBase (POCKETBASE_URL);
 
+export { pb };
+
+
 //1. Fonction qui retourne la liste de tous les films triés par date de projection
 
 export async function AllFilmsProjection() {
 const films = await pb.collection('Films').getFullList({
-    sort: 'date_film' 
+    sort: 'date_film',
+    expand: 'invite',
 });
     return films;
 }
@@ -34,16 +38,27 @@ export async function AllActorsFestival() {
 
 export async function OnlyRealisateursFestival() {
     const allaRealisateurs = await pb.collection('invites').getFullList({
-        filter: 'role_invite = "realisateur"',
+        filter: 'role_invite = "Realisateur"',
         sort: 'nom_invite'
     });
     return allaRealisateurs;
+}
+//3.5.1 fonction qui retourne la liste de tous les que les Jurys du festival par ordre alphabétique
+
+export async function OnlyJurysFestival() {
+    const allJurys = await pb.collection('invites').getFullList({
+        filter: 'role_invite = "Jury"',
+        sort: 'nom_invite'
+    });
+    return allJurys;
 }
 
 //4. Une fonction qui retourne les infos d'un film en donnant son id en paramètre
 
 export async function FilmById(id) {
-    const film = await pb.collection('Films').getOne(id);
+    const film = await pb.collection('Films').getOne(id, {
+        expand: 'invites'
+    });
     return film;
 }
 
@@ -51,13 +66,17 @@ export async function FilmById(id) {
 
 export async function ActivityById(id) {
     const activity = await pb.collection('activites').getOne(id);
+    act.img = pb.files.getURL(act, act.image_evenement);
     return activity;
 }
 
 //6. Une fonction qui retourne les infos d'un acteur / réalisateur en donnant son id en paramètre
 
 export async function ActorById(id) {
-    const actor = await pb.collection('invites').getOne(id);
+    const actor = await pb.collection('invites').getOne(id, {
+        expand: 'films_invite'
+    });
+    actor.img = pb.files.getURL(actor, actor.image_evenement);
     return actor;
 }
 

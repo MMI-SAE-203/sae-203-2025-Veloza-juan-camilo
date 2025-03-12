@@ -1,6 +1,63 @@
---- 
-import Layout from "../../layouts/Layout.astro";
 ---
+import Layout from "../../layouts/Layout.astro";
+import Reservation from "../../assets/icons/reservation.svg";
+import Cardreservation from "../../components/Cardservetion.astro";
+
+import { AllFilmsProjection } from "../../js/backend.js";
+
+const films = await AllFilmsProjection();
+
+// seance 1
+const seance1Films = [films[5], films[2], films[6]];
+console.log(seance1Films);
+
+// seance 2
+const seance2Films = [films[3], films[1], films[4]];
+
+// seance 3
+const seance3Films = [films[2], films[4], films[5], films[6]];
+---
+
 <Layout>
-    
+  <!-- banner -->
+  <div class="bg-neutral-200 py-20">
+    <Reservation />
+    <div>
+      <p>
+        "Ne manquez pas votre place ! Réservez dès maintenant pour plonger dans
+        le monde du 7e Art en plein air."
+      </p>
+    </div>
+  </div>
+
+  <!-- seance 1 -->
+  <div class="bg-[var(--color-vert)] p-6 flex flex-row-reverse">
+    <h2>SÉANCE 1</h2>
+  </div>
+  <h3>DIMANCHE, 8 AOUT 2025</h3>
+  <hr>
+  <div>
+    {seance1Films.map((film) => <Cardreservation {...film} />)}
+  </div>
+
+  <!-- seance 2 -->
+  <div class="bg-[var(--color-violet)] p-6 text-white">
+    <h2>SÉANCE 2</h2>
+  </div>
+    <h3>DIMANCHE, 9 AOUT 2025</h3>
+  <hr>
+  <div>
+    {seance2Films.map((film) => <Cardreservation {...film} />)}
+  </div>
+
+  <!-- seance 3 -->
+  <div class="bg-[var(--color-beige)] p-6 flex flex-row-reverse">
+    <h2>SÉANCE 3</h2>
+  </div>
+      <h3>DIMANCHE, 10 AOUT 2025</h3>
+  <hr>
+  <div>
+    {seance3Films.map((film) => <Cardreservation {...film} />)}
+  </div>
+
 </Layout>

@@ -1,5 +1,5 @@
 import {AllFilmsProjection, AllActivitiesProjection, AllActorsFestival, OnlyRealisateursFestival, FilmById, ActivityById, 
-ActorById, JuryActivitiesById, AllAnimateursName, addNewFilm, updateFilmsbyId } from './backend.mjs';
+ActorById, JuryActivitiesById, AllAnimateursName, addNewFilm, updateFilmsbyId, OnlyJurysFestival} from './backend.mjs';
 
 //1. Fonction qui retourne la liste de tous les films triés par date de projection
 
@@ -45,8 +45,6 @@ ActorById, JuryActivitiesById, AllAnimateursName, addNewFilm, updateFilmsbyId } 
 // } catch (error) {
 //     console.error(error);
 // }
-
-
 
 
 //4. Une fonction qui retourne les infos d'un film en donnant son id en paramètre

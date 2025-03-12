@@ -91,4 +91,3 @@ export async function addNewFilm (NewFilm){
 export async function updateFilmsbyId (id, data){
     await pb.collection('Films').update(id, data);
 }
-

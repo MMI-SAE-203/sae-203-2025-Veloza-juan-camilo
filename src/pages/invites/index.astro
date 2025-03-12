@@ -1,27 +1,65 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Star from "../../assets/icons/Star.svg";
+import Cardinvites from "../../components/Cardinvite.astro";
 
-import {AllActorsFestival} from "../../js/backend.js";
-const actors = await AllActorsFestival();
+import { OnlyJurysFestival } from "../../js/backend.js";
+import {OnlyRealisateursFestival} from "../../js/backend.js";
 
-console.log(actors);
+const realisateurs = await OnlyRealisateursFestival();
+const actors = await OnlyJurysFestival();
 ---
-<Layout>
-<h1 class="text-4xl">LES INVITÉS</h1>
-<Star />
-<p>Le festival Flash Cinéma 25 est un événement cinématographique qui se déroule dans la ville d'Ornans, située dans le département du Doubs. Ce festival se distingue de ces concurrents par son concept dynamique, en mettant à l'honneur les films courts et des courts métrages capturent la rapidité, l'énergie et l'innovation du septième art (Cinéma).</p>
 
-<div>
-    <h2>LES JURYS</h2>
+<Layout>
+<div class="px-6 pb-15">
+    <h1 class="text-[64px]">LES INVITÉS</h1>
+    <Star />
+    <p class="py-10">
+        Le festival Flash Cinéma 25 est un événement cinématographique qui se
+        déroule dans la ville d'Ornans, située dans le département du Doubs. Ce
+        festival se distingue de ces concurrents par son concept dynamique, en
+        mettant à l'honneur les films courts et des courts métrages capturent la
+        rapidité, l'énergie et l'innovation du septième art (Cinéma).
+    </p>
+
+<h1>Jurys</h1>
     <div>
+        {actors.map((invites) => <Cardinvites {...invites} />)}
+    </div>
+
+<h1 class="py-10">Les realisateurs</h1>
+    <div>
+        {realisateurs.map((realisateurs) => <Cardinvites {...realisateurs} />)}
+    </div>
+
+</div>
+
+    
+    <!-- <div>
+        <h2>LES JURYS</h2>
         <div>
-            <!-- <h3>{actors.nom_invite}</h3>
-            <h3>{actors.prenom_invite}</h3> -->
+        <div>
+            {jurys.map((jury) => 
+            <p>{jury.prenom_invite} {jury.nom_invite}</p>
+            <p></p>
+            )}
+            <a href=`/invites/id`>D'autres pages</a>
+        </div>
         </div>
     </div>
 
-    <a href=`/invites/id`>no se</a>
-
-</div>
-</Layout>
+    <div>
+        <h2>LES RÉALISATEURS</h2>
+        <div>
+            <div>
+                {realisateurs.map((realisateur) => 
+                <div class="flex">
+                    <div>{realisateur.photo_invite}</div>
+                    <p>{realisateur.prenom_invite} {realisateur.nom_invite}</p>
+                </div>
+                )}
+                <a href=`/invites/id`>D'autres pages</a>
+            </div>
+        </div>
+    </div> -->
+    </Layout>

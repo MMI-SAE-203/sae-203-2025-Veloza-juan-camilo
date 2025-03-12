@@ -1,15 +1,26 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Cardfilms from "../components/Cardfilms.astro";
+import Button from "../components/Button.astro";
 
+import { Picture } from "astro:assets";
 
 import { AllFilmsProjection } from "../js/backend.js";
 let events = await AllFilmsProjection();
 ---
 
 <Layout>
-  <div>
-    <h1 class="text-4xl">PROGRAMME<br />2025</h1>
+  <div class="">
+    <div class="bg-[var(--color-violet-obscure)]">
+      <h1 class="text-[80px]/18 text-white">PROGRAMME 2025</h1>
+    </div>
     {events.map((event) => <Cardfilms {...event} />)}
+  </div>
+
+  <div class="bg-[var(--color-violet-fonce)] p-10 *:py-3">
+    <h2 class="text-white text-[36px]/10 uppercase pr-10">si vous souhaitez participer au festival, inscrivez-vous !</h2>
+    <div>
+    <Button href="/participer" variant="beige">En savoir plus</Button>
+    </div>
   </div>
 </Layout>

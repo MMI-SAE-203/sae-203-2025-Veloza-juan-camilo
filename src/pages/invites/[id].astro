@@ -1,7 +1,69 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { ActorById } from "../../js/backend.js";
+import { FilmById } from "../../js/backend.js";
+import Button from "../../components/Button.astro";
+
+import ImagePB from "../../components/ImagePB.astro";
+const { id } = Astro.params;
+
+// const films =await FilmById(id);
+// console.log(films);
+
+const invites = await ActorById(id);
+console.log(invites);
+
+if (!invites) {
+  console.error(`invité ${id} not found`);
+  return Astro.redirect("/invites");
+}
 ---
 
-<Layout>
-    <h1>invites</h1>
+<Layout title={invites?.nom_invite}>
+  <div class="p-6">
+    <h1 class="text-black text-[58px]/15">
+      {invites?.prenom_invite}
+      {invites?.nom_invite}
+    </h1>
+    <ImagePB
+      record={invites}
+      field="photo_invite"
+      alt={invites.imgAlt}
+      classPicture="duotone col-start-1 row-start-1 col-span-2 row-span-2 group-hover:before:bg-black"
+      classImg="group-hover:grayscale-0 group-hover:mix-blend-normal py-10 w-[390px] h-[390px] object-cover"
+    />
+    <h2 class="uppercase text-[36px] pb-8">biographie</h2>
+    <p>{invites?.biographie_invite}</p>
+
+    <div>
+      <h2 class="uppercase text-[36px] py-8 pt-15">
+        PARTICIPATION AU FESTIVAL
+      </h2>
+      <div class="*:py-1">
+
+        <div class="flex justify-between">
+          <p class="uppercase font-bold">{invites?.expand?.films_invite.titre_film}</p>
+          <p>{invites?.role_invite}</p>
+        </div>
+
+        <p>Durée : {invites?.expand?.films_invite.duree_film} min</p>
+        <p>
+          Langue en {invites?.expand?.films_invite.langue_film} avec sous titre en
+          FR
+        </p>
+      </div>
+      <ImagePB
+        record={invites?.expand?.films_invite}
+        field="img_film"
+        alt={invites.imgAlt}
+        classPicture="duotone col-start-1 row-start-1 col-span-2 row-span-2 group-hover:before:bg-black"
+        classImg="group-hover:grayscale-0 group-hover:mix-blend-normal py-10"
+      />
+      <div class="flex justify-center pb-5">
+        <Button href="/reservation" variant="violet"
+          >RÉSERVEZ VOS TICKETS ICI!</Button
+        >
+      </div>
+    </div>
+  </div>
 </Layout>
