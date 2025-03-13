@@ -1,7 +1,189 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { FilmById } from "../../js/backend.js";
+import ImagePB from "../../components/ImagePB.astro";
+import Button from "../../components/Button.astro";
+
+const { id } = Astro.params;
+
+const reservation = await FilmById(id);
+console.log(reservation);
 ---
 
 <Layout>
-    <h1>RESERVATION</h1>
+<div class="px-6 py-6">
+  <h1>RESERVATION</h1>
+  <hr />
+
+  <div class="flex items-center justify-between">
+    <h3>{reservation.titre_film}</h3>
+    <p>
+      Un film par{
+        reservation?.expand?.invite.prenom_invite +
+          " " + reservation?.expand.invite.nom_invite
+      }
+    </p>
+  </div>
+
+  <div>
+    <p>Durée: {reservation.duree_film}min</p>
+    <p>{reservation.langue_film} avec sous-titres en FR</p>
+  </div>
+
+  <h2>BANDE D'ANNONCE</h2>
+  <a>{reservation.bd_film}</a>
+
+  <div>
+    <h3>SYNOPSIS</h3>
+    <p>
+      <span class="font-bold">Misericordie</span> raconte l'histoire déchirante de
+      Marie, une femme confrontée à un dilemme moral insoutenable : son frère, Paul,
+      a accidentellement causé la mort de sa fille dans un moment de folie. Rongé
+      par la culpabilité, Paul est prêt à tout pour expier sa faute. Il tente désespérément
+      de racheter son acte, offrant son aide inconditionnelle à Marie et s'enfonçant
+      dans une spirale de rédemption. Mais Marie, tiraillée entre sa douleur, son
+      amour fraternel et sa haine, ne parvient pas à pardonner. La culpabilité de
+      Paul ne fait qu’accentuer la souffrance de Marie, qui oscille entre l'envie
+      de lui accorder le pardon et l'incapacité d'étouffer sa colère. Les souvenirs
+      de sa fille la hantent, et elle se retrouve piégée dans un cycle d’émotions
+      contradictoires : un désir de justice, mêlé à la complexité de la relation
+      avec son frère.
+    </p>
+  </div>
+
+  <div>
+    <ImagePB
+      record={reservation}
+      field="img_film"
+      alt={reservation.imgAlt}
+      classPicture="duotone col-start-1 row-start-1 col-span-2 row-span-2 group-hover:before:bg-black"
+      classImg="group-hover:grayscale-0 group-hover:mix-blend-normal p-5"
+    />
+  </div>
+
+</div>
+
+
+  <div class="bg-[var(--color-violet-obscure)] p-6">
+    <h2 class="uppercase text-[36px] text-white">À propos de {reservation?.expand.invite.prenom_invite +  " " + reservation?.expand.invite.nom_invite}</h2>
+    <p class="text-white pt-5">
+      Née en 2003 à Bogota en Colombie, Carla Diaz Rodriguez, plus connue sous
+      le nom de Carly, est une réalisatrice en herbe qui a étudié les arts
+      cinématographiques et la photographie à l'Université polytechnique
+      nationale de Bogota.
+    </p>
+
+    <p class="text-white pt-5">
+      Sa motivation l'a amenée à remporter différents prix de réalisation à son
+      université et des tournois nationaux dans le domaine des courts métrages.
+      Récemment arrivée en France, elle souhaite exprimer sa vision de la vie
+      humaine et des relations complexes qu'elle peut entretenir.
+    </p>
+  </div>
+
+  <hr />
+
+
+  <div class="py-10 px-6 item">
+    <body class="bg-gray-50 min-h-screen flex items-center lg:justify-center p-4">
+      <div class="w-full max-w-md lg:max-w-3xl">
+        <form class="space-y-6 md:space-y-8">
+          <div
+            class="bg-white rounded-2xl p-4 md:p-6 border border-gray-300"
+          >
+            <label class="text-gray-500 text-xs md:text-sm mb-2 block"
+              >DATE</label
+            >
+            <div class="flex gap-2 md:gap-4">
+              <div class="flex-1">
+                <label class="block">
+                  <input
+                    type="radio"
+                    name="date"
+                    value="8 août 2024"
+                    class="sr-only peer"
+                    checked
+                  />
+                  <div
+                    class="flex items-center justify-center h-12 md:h-14 rounded-lg border border-gray-200 cursor-pointer text-sm md:text-base peer-checked:bg-gray-100 peer-checked:border-gray-300"
+                  >
+                    8 août 2024
+                  </div>
+                </label>
+              </div>
+              <div class="flex-1">
+                <label class="block">
+                  <input
+                    type="radio"
+                    name="date"
+                    value="9 août 2025"
+                    class="sr-only peer"
+                  />
+                  <div
+                    class="flex items-center justify-center h-12 md:h-14 rounded-lg border border-gray-200 cursor-pointer text-sm md:text-base peer-checked:bg-gray-100 peer-checked:border-gray-300"
+                  >
+                    9 août 2025
+                  </div>
+                </label>
+              </div>
+              <div class="flex-1">
+                <label class="block">
+                  <input
+                    type="radio"
+                    name="date"
+                    value="10 août 2025"
+                    class="sr-only peer"
+                  />
+                  <div
+                    class="flex items-center justify-center h-12 md:h-14 rounded-lg border border-gray-200 cursor-pointer text-sm md:text-base peer-checked:bg-gray-100 peer-checked:border-gray-300"
+                  >
+                    10 août 2025
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-4 md:grid md:grid-cols-2 md:gap-6 md:space-y-0">
+            <div>
+              <input
+                type="text"
+                name="nom"
+                placeholder="NOM"
+                class="w-full h-12 md:h-14 rounded-full bg-white border border-gray-200 px-4 md:px-6 placeholder:text-gray-400 placeholder:text-sm md:placeholder:text-base focus:outline-none focus:ring-2 focus:ring-gray-200"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="prenom"
+                placeholder="PRENOM"
+                class="w-full h-12 md:h-14 rounded-full bg-white border border-gray-200 px-4 md:px-6 placeholder:text-gray-400 placeholder:text-sm md:placeholder:text-base focus:outline-none focus:ring-2 focus:ring-gray-200"
+              />
+            </div>
+            <div class="md:col-span-2">
+              <input
+                type="email"
+                name="email"
+                placeholder="EMAIL"
+                class="w-full h-12 md:h-14 rounded-full bg-white border border-gray-200 px-4 md:px-6 placeholder:text-gray-400 placeholder:text-sm md:placeholder:text-base focus:outline-none focus:ring-2 focus:ring-gray-200"
+              />
+            </div>
+          </div>
+          <div class="md:flex md:justify-center">
+            <Button
+              type="submit"
+              class="w-full md:w-1/2 lg:w-1/3 h-12 md:h-14 rounded-full"
+            >
+              Enviar
+            </Button>
+          </div>
+        </form>
+      </div>
+    </body>
+
+    <div>
+        <p class="text-[10px]/4 pl-6 pt-5 pb-10">LIRE LES POLITIQUES DE CONFIDENTIALITÉ AVANT DE REALISER
+UNE RESERVATION DE CE FILM*</p>
+    </div>
+  </div>
 </Layout>

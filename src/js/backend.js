@@ -57,7 +57,7 @@ export async function OnlyJurysFestival() {
 
 export async function FilmById(id) {
     const film = await pb.collection('Films').getOne(id, {
-        expand: 'invites'
+        expand: 'invite'
     });
     return film;
 }

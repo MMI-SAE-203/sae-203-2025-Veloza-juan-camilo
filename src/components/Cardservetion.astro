@@ -4,8 +4,8 @@ import ImagePB from "./ImagePB.astro";
 import Button from "../components/Button.astro";
 ---
 
-<div class="flex flex-col justify-center text-cente items-centerr">
-<div class="flex *:py-6 px-6">
+<!-- <div class="flex flex-col text-center">
+<div class="flex *:py-6 px-6 items-center">
   <div>
     <ImagePB
       record={reservation}
@@ -15,7 +15,7 @@ import Button from "../components/Button.astro";
       classImg="group-hover:grayscale-0 group-hover:mix-blend-normal w-[172px] lg:w-[171px] h-[171px] object-cover"
     />
   </div>
-  <div class="">
+  <div class="text-left pl-6">
     <p>{reservation.titre_film}</p>
     <p>
       Film de{" " + reservation.expand?.invite.prenom_invite + " " + reservation.expand?.invite.nom_invite}
@@ -26,5 +26,37 @@ import Button from "../components/Button.astro";
         <Button href={`reservation/${reservation.id}`} variant="violet">Réserver</Button>
     </div>
 </div>
-<hr>
+<hr> -->
+<div class="flex flex-col text-center lg:max-w-2xl lg:mx-auto">
+  <div class="flex lg:flex-row *:py-6 px-6 items-center">
+    <div>
+      <ImagePB
+        record={reservation}
+        field="img_film"
+        alt={reservation.imgAlt}
+        classPicture="duotone col-start-1 row-start-1 col-span-2 row-span-2 group-hover:before:bg-black"
+        classImg="group-hover:grayscale-0 group-hover:mix-blend-normal w-[172px] lg:w-[700px] h-[171px] lg:h-[220px] object-cover"
+      />
+    </div>
 
+    <div class="text-left pl-6 lg:max-w-lg">
+      <p class="text-sm">{reservation.duree_film} min</p>
+      <hr />
+      <p class="text-lg lg:text-2xl font-medium mb-2">
+        {reservation.titre_film}
+      </p>
+      <p class="text-sm lg:text-base pb-10">
+        Film de{" " + reservation.expand?.invite.prenom_invite + " " +reservation.expand?.invite.nom_invite
+        }
+      </p>
+      <p class="hidden lg:block mt-4 text-sm text-gray-700">
+        {reservation.description_film || ""}
+      </p>
+      <Button class="p-y" href={`reservation/${reservation.id}`} variant="violet"
+        >Réserver</Button
+      >
+    </div>
+  </div>
+  <div class="flex justify-center py-4"></div>
+</div>
+<hr />
