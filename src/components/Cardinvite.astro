@@ -4,33 +4,32 @@ import ImagePB from "./ImagePB.astro";
 import Button from "./Button.astro";
 ---
 
-<div
-  class="group w-full sm:w-1/2 lg:w-1/3 p-4 transition-all duration-300 hover:shadow-lg"
->
-  <div class="flex">
-    <div class="justify-center">
+<div class="group transition-all duration-300 hover:shadow-lg p-4">
+  <div class="flex flex-row lg:flex-col rounded-lg overflow-hidden">
+    <div class="w-1/3 lg:w-full">
       <ImagePB
         record={invites}
         field="photo_invite"
-        alt={invites.imgAlt}
-        classPicture="duotone col-start-1 row-start-1 col-span-2 row-span-2 group-hover:before:bg-black"
-        classImg="group-hover:grayscale-0 group-hover:mix-blend-normal w-[672px] h-[172px] object-cover filter grayscale-100 transition-all duration-300"
+        alt={invites.imgAlt ||
+          `Photo de ${invites.prenom_invite} ${invites.nom_invite}`}
+        classPicture="duotone group-hover:before:bg-black"
+        classImg="w-full h-[150px] lg:h-[250px] object-cover filter grayscale-100 group-hover:grayscale-0 group-hover:mix-blend-normal transition-all duration-300"
       />
     </div>
 
-    <div class="flex flex-col pl-6">
+    <div class="flex flex-col p-4 w-2/3 lg:w-full">
       <h3 class="uppercase font-medium leading-6 text-lg mb-2">
         {invites.prenom_invite}
         <br />
         {invites.nom_invite}
       </h3>
-      <div class="h-24 overflow-hidden">
-        <p class="text-xs py-3 tracking-[1.5px] line-clamp-3">
+      <div class="h-20 overflow-hidden">
+        <p class="text-xs py-2 tracking-[1.5px] line-clamp-3">
           {invites.description_invite}
         </p>
       </div>
       <a
-        class="text-sm underline decoration-1 mt-2 hover:text-violet-700 transition-colors"
+        class="text-sm underline decoration-1 mt-auto hover:text-[var(--color-vert)] transition-colors"
         href={`invites/${invites.id}`}
       >
         En savoir plus

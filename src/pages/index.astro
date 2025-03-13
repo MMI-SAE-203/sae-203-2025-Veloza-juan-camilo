@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import Affiche from "../assets/img/affiche.webp";
+import AfficheDesktop from "../assets/img/affichedesktop.webp";
+import cinemaPleinAir from "../assets/img/cinemaPleinAir.webp";
 import Button from "../components/Button.astro";
 import Cardprincipal from "../components/Cardprincipal.astro";
 import { Picture } from "astro:assets";
@@ -15,11 +17,16 @@ import Layout from "../layouts/Layout.astro";
         FESTIVAL FLASH <br />CINÉMA 25
       </h1>
     </div>
-    <figure class="w-screen">
+    <figure class="w-full">
       <Picture
-        class="block w-full object-fill"
+        class="block w-full object-cover h-200 md:hidden"
         src={Affiche}
         alt="Representation of a cinema festival"
+      />
+      <Picture
+        class="hidden md:block w-full object-cover h-200"
+        src={AfficheDesktop}
+        alt="Representation of a cinema festival (desktop version)"
       />
     </figure>
   </div>
@@ -41,6 +48,16 @@ import Layout from "../layouts/Layout.astro";
       travers une sélection de courts-métrages. Respirez l'air pur, créez des
       souvenirs et partagezvotre passion du cinéma avec d'autres."
     </p>
+  </div>
+
+  <div>
+    <figure class="w-full">
+      <Picture
+        class="block w-full object-cover md:hidden"
+        src={cinemaPleinAir}
+        alt="Representation of a cinema festival"
+      />
+    </figure>
   </div>
 
   <div>

@@ -1,0 +1,82 @@
+---
+import { AllFilmsProjection } from "../js/backend.js";
+import ImagePB from "./ImagePB.astro";
+import Button from "./Button.astro";
+
+const films = await AllFilmsProjection();
+---
+
+<div class="w-full my-8 relative overflow-hidden ">
+  <div class="relative w-full">
+    <div
+      class="carousel-track flex gap-4 py-4 overflow-x-auto scroll-smooth scrollbar-hide"
+    >
+      {
+        films.map((film) => (
+          <div class="flex-none min-w-[280px] w-[280px]">
+            <div class="rounded-lg overflow-hidden bg-white shadow-md transition-transform duration-300 hover:-translate-y-2">
+              <ImagePB
+                record={film}
+                field="img_film"
+                alt={film.titre_film}
+                classPicture="duotone"
+                classImg="w-full h-[200px] object-cover"
+              />
+              <div class="p-4">
+                <h3 class="text-lg font-semibold">{film.titre_film}</h3>
+                <p class="text-sm mb-2">Durée: {film.duree_film} min</p>
+                <p class="text-sm mb-4">
+                  {film.expand?.invite
+                    ? `Film de ${film.expand.invite.prenom_invite} ${film.expand.invite.nom_invite}`
+                    : "Réalisateur inconnu"}
+                </p>
+                <Button href={`/reservation/${film.id}`} variant="violet">
+                  Voir détails
+                </Button>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <button
+      class="carousel-prev absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white rounded-full w-10 h-10 flex items-center justify-center z-10 hover:bg-black/70"
+      aria-label="Previous slide">&#10094;</button
+    >
+    <button
+      class="carousel-next absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white rounded-full w-10 h-10 flex items-center justify-center z-10 hover:bg-black/70"
+      aria-label="Next slide">&#10095;</button
+    >
+  </div>
+</div>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const track = document.querySelector(".carousel-track");
+    const prevButton = document.querySelector(".carousel-prev");
+    const nextButton = document.querySelector(".carousel-next");
+    const items = document.querySelectorAll(".carousel-track > div");
+
+    if (!track || !prevButton || !nextButton || !items.length) return;
+
+    const itemWidth = items[0].offsetWidth + 16; 
+
+    prevButton.addEventListener("click", () => {
+      track.scrollLeft -= itemWidth * 2;
+    });
+
+    nextButton.addEventListener("click", () => {
+      track.scrollLeft += itemWidth * 2;
+    });
+  });
+</script>

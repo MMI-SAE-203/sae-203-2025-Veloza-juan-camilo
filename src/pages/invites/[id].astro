@@ -7,9 +7,6 @@ import Button from "../../components/Button.astro";
 import ImagePB from "../../components/ImagePB.astro";
 const { id } = Astro.params;
 
-// const films =await FilmById(id);
-// console.log(films);
-
 const invites = await ActorById(id);
 console.log(invites);
 
@@ -20,50 +17,118 @@ if (!invites) {
 ---
 
 <Layout title={invites?.nom_invite}>
-  <div class="p-6">
-    <h1 class="text-black text-[58px]/15">
-      {invites?.prenom_invite}
-      {invites?.nom_invite}
-    </h1>
-    <ImagePB
-      record={invites}
-      field="photo_invite"
-      alt={invites.imgAlt}
-      classPicture="duotone col-start-1 row-start-1 col-span-2 row-span-2 group-hover:before:bg-black"
-      classImg="group-hover:grayscale-0 group-hover:mix-blend-normal py-10 w-[390px] h-[390px] object-cover"
-    />
-    <h2 class="uppercase text-[36px] pb-8">biographie</h2>
-    <p>{invites?.biographie_invite}</p>
+  <div class="px-6 py-6 lg:grid lg:grid-cols-13 lg:gap-8 lg:px-12 lg:py-10">
+    <div class="lg:col-span-5 lg:order-2">
+      <ImagePB
+        record={invites}
+        field="photo_invite"
+        alt={invites.imgAlt ||
+          `Photo de ${invites.prenom_invite} ${invites.nom_invite}`}
+        classPicture="duotone group-hover:before:bg-black"
+        classImg="group-hover:grayscale-0 group-hover:mix-blend-normal py-5 w-full h-[390px] lg:h-[500px] object-cover"
+      />
+    </div>
 
-    <div>
-      <h2 class="uppercase text-[36px] py-8 pt-15">
+    <div class="lg:col-span-8 lg:order-1">
+      <h1 class="text-black text-[58px]/15 lg:text-[72px]/[80px] font-bold">
+        {invites?.prenom_invite}
+        <br />
+        {invites?.nom_invite}
+      </h1>
+
+      <h2 class="uppercase text-[36px] pb-4 pt-8">biographie</h2>
+      <p class="lg:text-lg lg:leading-relaxed">{invites?.biographie_invite}</p>
+
+      {
+        invites.nationalite_invite && (
+          <div class="mt-6 lg:mt-8">
+            <p class="text-sm lg:text-base">
+              <span class="font-bold">Nationalité:</span>{" "}
+              {invites.nationalite_invite}
+            </p>
+          </div>
+        )
+      }
+
+      {
+        invites.prix_invite && (
+          <div class="mt-4">
+            <p class="text-sm lg:text-base">
+              <span class="font-bold">Prix et récompenses:</span>{" "}
+              {invites.prix_invite}
+            </p>
+          </div>
+        )
+      }
+    </div>
+
+    <hr class="my-8 lg:col-span-13 lg:order-3" />
+
+    <div class="lg:col-span-13 lg:order-4">
+      <h2 class="uppercase text-[36px] py-6 lg:text-[48px]">
         PARTICIPATION AU FESTIVAL
       </h2>
-      <div class="*:py-1">
 
-        <div class="flex justify-between">
-          <p class="uppercase font-bold">{invites?.expand?.films_invite.titre_film}</p>
-          <p>{invites?.role_invite}</p>
+      <div class="lg:grid lg:grid-cols-13 lg:gap-8">
+        <div class="lg:col-span-8">
+          <div class="*:py-1 mb-6">
+            <div class="flex justify-between items-center">
+              <p class="uppercase font-bold text-lg lg:text-2xl">
+                {invites?.expand?.films_invite.titre_film}
+              </p>
+              <p
+                class="bg-[var(--color-violet)] text-white px-4 py-1 rounded-full"
+              >
+                {invites?.role_invite}
+              </p>
+            </div>
+
+            <p class="lg:text-lg">
+              Durée : {invites?.expand?.films_invite.duree_film} min
+            </p>
+            <p class="lg:text-lg">
+              Langue en {invites?.expand?.films_invite.langue_film} avec sous-titres
+              en FR
+            </p>
+
+            <div class="mt-6">
+              <p class="lg:text-lg line-clamp-4">
+                {
+                  invites?.expand?.films_invite.synopsis_film ||
+                    "Synopsis non disponible"
+                }
+              </p>
+            </div>
+
+            <div class="flex justify-start mt-8">
+              <Button
+                href={`/reservation/${invites?.expand?.films_invite.id}`}
+                variant="violet"
+              >
+                RÉSERVEZ VOS TICKETS ICI!
+              </Button>
+            </div>
+          </div>
         </div>
-
-        <p>Durée : {invites?.expand?.films_invite.duree_film} min</p>
-        <p>
-          Langue en {invites?.expand?.films_invite.langue_film} avec sous titre en
-          FR
-        </p>
+        <div class="lg:col-span-5">
+          <ImagePB
+            record={invites?.expand?.films_invite}
+            field="img_film"
+            alt={`Affiche du film ${invites?.expand?.films_invite.titre_film}`}
+            classPicture="duotone group-hover:before:bg-black"
+            classImg="group-hover:grayscale-0 group-hover:mix-blend-normal w-full h-[300px] lg:h-[400px] object-cover"
+          />
+        </div>
       </div>
-      <ImagePB
-        record={invites?.expand?.films_invite}
-        field="img_film"
-        alt={invites.imgAlt}
-        classPicture="duotone col-start-1 row-start-1 col-span-2 row-span-2 group-hover:before:bg-black"
-        classImg="group-hover:grayscale-0 group-hover:mix-blend-normal py-10"
-      />
-      <div class="flex justify-center pb-5">
-        <Button href="/reservation" variant="violet"
-          >RÉSERVEZ VOS TICKETS ICI!</Button
-        >
+    </div>
+
+    <div class="mt-10 lg:col-span-13 lg:order-5">
+      <div class="flex justify-center">
+        <Button href="/invites" variant="outline">
+          RETOUR À LA LISTE DES INVITÉS
+        </Button>
       </div>
     </div>
   </div>
 </Layout>
+
