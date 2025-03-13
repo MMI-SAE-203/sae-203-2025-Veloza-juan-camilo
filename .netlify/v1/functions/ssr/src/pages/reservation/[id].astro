@@ -1,0 +1,223 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { FilmById } from "../../js/backend.js";
+import ImagePB from "../../components/ImagePB.astro";
+import Button from "../../components/Button.astro";
+
+const { id } = Astro.params;
+
+const reservation = await FilmById(id);
+console.log(reservation);
+---
+
+<Layout>
+  <div class="px-6 py-6 lg:grid lg:grid-cols-13 lg:gap-6 lg:px-12 lg:py-10">
+    <!--Titre -->
+    <div class="lg:col-span-13">
+      <h1 class="text-3xl lg:text-5xl">RESERVATION</h1>
+      <hr class="my-4" />
+    </div>
+
+    <!-- Img film -->
+    <div class="lg:col-span-5 lg:order-1">
+      <ImagePB
+        record={reservation}
+        field="img_film"
+        alt={reservation.imgAlt}
+        classPicture="duotone group-hover:before:bg-black"
+        classImg="w-full object-cover h-auto lg:h-[500px] group-hover:grayscale-0 group-hover:mix-blend-normal"
+      />
+    </div>
+
+    <!-- Info del film -->
+    <div class="lg:col-span-8 lg:order-1">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-2xl font-semibold">{reservation.titre_film}</h3>
+        <p class="text-sm lg:text-base">
+          Un film par{
+            reservation?.expand?.invite.prenom_invite +
+              " " +
+              reservation?.expand.invite.nom_invite
+          }
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <p class="mb-2">Durée: {reservation.duree_film}min</p>
+        <p class="mb-2">{reservation.langue_film} avec sous-titres en FR</p>
+        <a
+          href={reservation.bd_film}
+          class="text-[var(--color-violet)] underline">{reservation.bd_film}</a
+        >
+      </div>
+
+      <h2 class="text-xl mb-4 lg:text-2xl">BANDE D'ANNONCE</h2>
+
+      <!-- video mais j'sais pas comment mettre une video de youtube -->
+      <div
+        class="mb-6 aspect-video bg-gray-100 flex items-center justify-center"
+      >
+        <p>Vidéo bande d'annonce</p>
+      </div>
+
+      <h3 class="text-xl font-semibold mb-3">SYNOPSIS</h3>
+      <p class="text-base mb-6">
+        <span class="font-bold">Misericordie</span> raconte l'histoire déchirante
+        de Marie, une femme confrontée à un dilemme moral insoutenable : son frère,
+        Paul, a accidentellement causé la mort de sa fille dans un moment de folie.
+        Rongé par la culpabilité, Paul est prêt à tout pour expier sa faute. Il tente
+        désespérément de racheter son acte, offrant son aide inconditionnelle à Marie
+        et s'enfonçant dans une spirale de rédemption. Mais Marie, tiraillée entre
+        sa douleur, son amour fraternel et sa haine, ne parvient pas à pardonner.
+        La culpabilité de Paul ne fait qu'accentuer la souffrance de Marie, qui oscille
+        entre l'envie de lui accorder le pardon et l'incapacité d'étouffer sa colère.
+        Les souvenirs de sa fille la hantent, et elle se retrouve piégée dans un
+        cycle d'émotions contradictoires : un désir de justice, mêlé à la complexité
+        de la relation avec son frère.
+      </p>
+    </div>
+
+    <!-- Info personne/realisateur-jury -->
+    <div
+      class="bg-[var(--color-violet-obscure)] p-6 mt-8 lg:col-span-13 lg:order-3 lg:mt-12 lg:p-10 lg:rounded-lg"
+    >
+      <h2 class="uppercase text-[36px] text-white mb-4">
+        À propos de {
+          reservation?.expand.invite.prenom_invite +
+            " " +
+            reservation?.expand.invite.nom_invite
+        }
+      </h2>
+      <div class="lg:grid lg:grid-cols-2 lg:gap-8">
+        <p class="text-white pt-5">
+          Née en 2003 à Bogota en Colombie, Carla Diaz Rodriguez, plus connue
+          sous le nom de Carly, est une réalisatrice en herbe qui a étudié les
+          arts cinématographiques et la photographie à l'Université
+          polytechnique nationale de Bogota.
+        </p>
+
+        <p class="text-white pt-5">
+          Sa motivation l'a amenée à remporter différents prix de réalisation à
+          son université et des tournois nationaux dans le domaine des courts
+          métrages. Récemment arrivée en France, elle souhaite exprimer sa
+          vision de la vie humaine et des relations complexes qu'elle peut
+          entretenir.
+        </p>
+      </div>
+    </div>
+
+    <!-- Ligne qui divise -->
+    <hr class="mt-10 mb-8 lg:col-span-13 lg:order-4" />
+
+    <!-- Formulair -->
+    <div class="py-6 lg:pl-25 lg:col-span-13 lg:order-5 lg:justify-center">
+      <div class="lg:grid lg:grid-cols-13 lg:gap-6">
+        <div class="lg:col-span-8 lg:col-start-3">
+          <form class="space-y-6 md:space-y-8">
+            <div class="bg-white rounded-2xl p-4 md:p-6 border border-gray-300">
+              <label class="text-gray-500 text-xs md:text-sm mb-2 block"
+                >DATE</label
+              >
+              <div class="flex gap-2 md:gap-4">
+                <div class="flex-1">
+                  <label class="block">
+                    <input
+                      type="radio"
+                      name="date"
+                      value="8 août 2024"
+                      class="sr-only peer"
+                      checked
+                    />
+                    <div
+                      class="flex items-center justify-center h-12 md:h-14 rounded-lg border border-gray-200 cursor-pointer text-sm md:text-base peer-checked:bg-gray-100 peer-checked:border-gray-300"
+                    >
+                      8 août 2024
+                    </div>
+                  </label>
+                </div>
+                <div class="flex-1">
+                  <label class="block">
+                    <input
+                      type="radio"
+                      name="date"
+                      value="9 août 2025"
+                      class="sr-only peer"
+                    />
+                    <div
+                      class="flex items-center justify-center h-12 md:h-14 rounded-lg border border-gray-200 cursor-pointer text-sm md:text-base peer-checked:bg-gray-100 peer-checked:border-gray-300"
+                    >
+                      9 août 2025
+                    </div>
+                  </label>
+                </div>
+                <div class="flex-1">
+                  <label class="block">
+                    <input
+                      type="radio"
+                      name="date"
+                      value="10 août 2025"
+                      class="sr-only peer"
+                    />
+                    <div
+                      class="flex items-center justify-center h-12 md:h-14 rounded-lg border border-gray-200 cursor-pointer text-sm md:text-base peer-checked:bg-gray-100 peer-checked:border-gray-300"
+                    >
+                      10 août 2025
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0">
+              <div>
+                <input
+                  type="text"
+                  name="nom"
+                  placeholder="NOM"
+                  class="w-full h-12 md:h-14 rounded-full bg-white border border-gray-200 px-4 md:px-6 placeholder:text-gray-400 placeholder:text-sm md:placeholder:text-base focus:outline-none focus:ring-2 focus:ring-gray-200"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="prenom"
+                  placeholder="PRENOM"
+                  class="w-full h-12 md:h-14 rounded-full bg-white border border-gray-200 px-4 md:px-6 placeholder:text-gray-400 placeholder:text-sm md:placeholder:text-base focus:outline-none focus:ring-2 focus:ring-gray-200"
+                />
+              </div>
+              <div class="lg:col-span-2">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="EMAIL"
+                  class="w-full h-12 md:h-14 rounded-full bg-white border border-gray-200 px-4 md:px-6 placeholder:text-gray-400 placeholder:text-sm md:placeholder:text-base focus:outline-none focus:ring-2 focus:ring-gray-200"
+                />
+              </div>
+            </div>
+            <div class="lg:flex lg:justify-center">
+              <Button
+                type="submit"
+                variant="violet"
+                class="w-full lg:w-1/2 h-12 md:h-14 rounded-full"
+              >
+                RÉSERVER
+              </Button>
+            </div>
+          </form>
+          <p class="text-[10px] mt-5 text-gray-500 text-center">
+            LIRE LES POLITIQUES DE CONFIDENTIALITÉ AVANT DE REALISER UNE
+            RESERVATION DE CE FILM*
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* grid */
+  @media (min-width: 1024px) {
+    .lg\:grid-cols-13 {
+      grid-template-columns: repeat(13, minmax(0, 1fr));
+    }
+  }
+</style>
