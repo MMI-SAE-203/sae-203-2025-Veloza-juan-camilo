@@ -1,24 +1,32 @@
 ---
 import Button from "./Button.astro";
-import cinemaPleinAir from "../assets/img/cinemaPleinAir.webp";
+import Affiche from "../assets/img/affiche.webp";
+import DefaultImage from "../assets/img/affiche.webp";
 import { Picture } from "astro:assets";
 
 const {
   title = "Title",
   description = "Description",
+  image = DefaultImage,
   link = "#",
+  imageAlt = "Image du festival",
 } = Astro.props;
 ---
 
-<div class="card p-4 border rounded shadow bg-[var(--color-violet-obscure)]">
+<div class="card border  shadow bg-[var(--color-violet-obscure)] pb-6 rounded-3xl">
   <div class="card-image mb-4">
-    <img class="w-full object-cover" />
+    <Picture
+      class="block w-full object-cover h-108"
+      src={image}
+      alt={imageAlt}
+    />
   </div>
-  <div class="card-content">
-    <h2 class="text-xl mb-2 text-white">{title}</h2>
-    <p class="text-sm text-white">{description}</p>
+
+  <div class="card-content px-4">
+    <h2 class="lg:text-4xl text-xl mb-2 text-white">{title}</h2>
+    <p class="lg:text-[18px] text-sm text-white">{description}</p>
   </div>
-  <div class="card-action mt-4">
+  <div class="card-action mt-4 px-4">
     <a>
         <Button href={link} variant="beige">Réserver</Button>
     </a>

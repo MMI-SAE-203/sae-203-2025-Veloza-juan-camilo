@@ -15,15 +15,17 @@ console.log(seance1Films);
 const seance2Films = [films[3], films[1], films[4]];
 
 // seance 3
-const seance3Films = [films[2], films[4], films[5], films[6]];
+const seance3Films = [films[2], films[4], films[5],];
 ---
 
 <Layout>
   <!-- banner -->
-  <div class="bg-neutral-200 py-20">
-    <Reservation />
+  <div class="bg-neutral-200 py-20 flex items-center justify-center">
     <div>
-      <p>
+      <Reservation />
+    </div>
+  <div class="">
+      <p class=" lg:text-xl lg:pl-50">
         "Ne manquez pas votre place ! Réservez dès maintenant pour plonger dans
         le monde du 7e Art en plein air."
       </p>

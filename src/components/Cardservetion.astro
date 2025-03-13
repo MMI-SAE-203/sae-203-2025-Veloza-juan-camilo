@@ -27,19 +27,21 @@ import Button from "../components/Button.astro";
     </div>
 </div>
 <hr> -->
-<div class="flex flex-col text-center lg:max-w-2xl lg:mx-auto">
-  <div class="flex lg:flex-row *:py-6 px-6 items-center">
+<div class="lg: grid lg:grid-cols-13 lg:gap-6 lg:px-12 lg:py-10 grid-cols-4">
+  <div class="*:py-6 px-6 items-center lg:col-span-5 lg:col-strar-1 col-span-2">
+
     <div>
       <ImagePB
         record={reservation}
         field="img_film"
         alt={reservation.imgAlt}
-        classPicture="duotone col-start-1 row-start-1 col-span-2 row-span-2 group-hover:before:bg-black"
-        classImg="group-hover:grayscale-0 group-hover:mix-blend-normal w-[172px] lg:w-[700px] h-[171px] lg:h-[220px] object-cover"
+        classPicture="duotone group-hover:before:bg-black"
+        classImg="group-hover:grayscale-0 group-hover:mix-blend-normal w-[172px] lg:w-[700px] h-[171px] lg:h-[420px] object-cover"
       />
     </div>
+  </div>
 
-    <div class="text-left pl-6 lg:max-w-lg">
+  <div class="text-left pl-6 lg:max-w-lg lg:col-start-6 lg:col-span-6 py-6">
       <p class="text-sm">{reservation.duree_film} min</p>
       <hr />
       <p class="text-lg lg:text-2xl font-medium mb-2">
@@ -49,14 +51,12 @@ import Button from "../components/Button.astro";
         Film de{" " + reservation.expand?.invite.prenom_invite + " " +reservation.expand?.invite.nom_invite
         }
       </p>
-      <p class="hidden lg:block mt-4 text-sm text-gray-700">
+      <p class="hidden lg:block mt-4 text-sm text-gray-700 lg:pb-20">
         {reservation.description_film || ""}
       </p>
-      <Button class="p-y" href={`reservation/${reservation.id}`} variant="violet"
+      <Button class="" href={`reservation/${reservation.id}`} variant="violet"
         >Réserver</Button
       >
     </div>
-  </div>
-  <div class="flex justify-center py-4"></div>
 </div>
 <hr />

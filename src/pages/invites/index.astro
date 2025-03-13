@@ -24,14 +24,14 @@ const actors = await OnlyJurysFestival();
       </p>
     </div>
     <div class="lg:col-span-13">
-      <h2 class="text-3xl lg:text-4xl mb-6">JURYS</h2>
+      <h2 class="text-3xl lg:text-6xl mb-6">JURYS</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
         {actors.map((invite) => <Cardinvites {...invite} />)}
       </div>
     </div>
 
     <div class="lg:col-span-13 mt-12">
-      <h2 class="text-3xl lg:text-4xl mb-6">LES RÉALISATEURS</h2>
+      <h2 class="text-3xl lg:text-6xl mb-6">LES RÉALISATEURS</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {realisateurs.map((realisateur) => <Cardinvites {...realisateur} />)}
       </div>
