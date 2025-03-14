@@ -3,28 +3,23 @@ import { Picture } from "astro:assets";
 import { pb } from "../js/backend.js";
 
 const {
-record,
-field = "imgUrl",
-alt,
-classPicture,
-classImg,
-thumb = "1024x1024",
+  record,
+  field = "imgUrl",
+  alt,
+  classPicture,
+  classImg,
+  thumb = "1024x1024",
 } = Astro.props;
 
 const imageUrl = record?.[field]
-? pb.files.getURL(record, record[field], { thumb })
-: null;
+  ? pb.files.getURL(record, record[field], { thumb })
+  : null;
 ---
 
-    {
-    imageUrl && (
-        <Picture
-        pictureAttributes={{ class: classPicture }}
-        class={classImg}
-        inferSize={true}
-        formats={["avif", "webp"]}
-        src={imageUrl}
-        alt={alt || "Image"}
-        />
-    )
-    }
+{
+  imageUrl && (
+    <picture class={classPicture}>
+      <img class={classImg} src={imageUrl} alt={alt || "Image"} />
+    </picture>
+  )
+}
